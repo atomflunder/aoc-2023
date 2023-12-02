@@ -10,4 +10,17 @@ if (!day) {
 mkdirSync(`./src/${day}`);
 
 writeFileSync(`./src/${day}/input.txt`, "Replace this with your input");
-writeFileSync(`./src/${day}/index.ts`, `import { readFileSync } from "fs";`);
+writeFileSync(
+    `./src/${day}/index.ts`,
+    `import { readFileSync } from "fs";
+
+const file = readFileSync("./src/${day}/input.txt", "utf-8");
+
+function partOne(input: string): void {}
+
+function partTwo(input: string): void {}
+
+partOne(file);
+partTwo(file);
+`
+);
