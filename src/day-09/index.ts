@@ -40,7 +40,7 @@ function getNextNumber(numbers: number[][], isPartTwo: boolean): number {
     return numbers.map((n) => n[n.length - 1]).reduce((a, b) => a + b);
 }
 
-function partOne(input: string): void {
+function getSolution(input: string, isPartTwo: boolean): number {
     const inputs = parseInput(input);
     let sum = 0;
 
@@ -62,38 +62,18 @@ function partOne(input: string): void {
             allNumbers.push(differences);
         }
 
-        sum += getNextNumber(allNumbers, false);
+        sum += getNextNumber(allNumbers, isPartTwo);
     }
 
-    console.log(sum);
+    return sum;
+}
+
+function partOne(input: string): void {
+    console.log(getSolution(input, false));
 }
 
 function partTwo(input: string): void {
-    const inputs = parseInput(input);
-    let sum = 0;
-
-    for (let i = 0; i < inputs.length; i++) {
-        const numbers = inputs[i];
-
-        let isDone = false;
-        let allNumbers: number[][] = [numbers];
-        let currentNums = numbers;
-
-        while (!isDone) {
-            const differences = getDifferences(currentNums);
-
-            if (differences.every((d) => d === 0)) {
-                isDone = true;
-            }
-
-            currentNums = differences;
-            allNumbers.push(differences);
-        }
-
-        sum += getNextNumber(allNumbers, true);
-    }
-
-    console.log(sum);
+    console.log(getSolution(input, true));
 }
 
 partOne(file);
